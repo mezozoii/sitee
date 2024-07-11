@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="{{ url_for('index') }}" class="logo"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo"></a> <!-- Иконка изображения для перехода на главную страницу -->
+            <h1>Site Header</h1> <!-- Заголовок сайта -->
+            <nav>
+                <a href="{{ url_for('login') }}">Login</a> <!-- Ссылка на страницу входа -->
+            </nav>
+        </div>
+    </header>
+    </main>
+        <div class="container">
+            <h2>Register</h2>
+            <form method="POST">
+                <div class="input-container">
+                    <input type="text" name="username" placeholder="Username" required>
+                </div>
+                <div class="input-container">
+                    <input type="password" name="password" placeholder="Password" id="password" required>
+                    <span class="toggle-password" onclick="togglePassword()">👁️</span>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+        </div>
+    </main>
+        <script>
+            function togglePassword() {
+                var passwordField = document.getElementById("password");
+                var passwordFieldType = passwordField.getAttribute("type");
+                var toggleIcon = document.querySelector('.toggle-password');
+                if (passwordFieldType === "password") {
+                    passwordField.setAttribute("type", "text");
+                    toggleIcon.textContent = "🙈"; // Иконка открытого глаза
+                } else {
+                    passwordField.setAttribute("type", "password");
+                    toggleIcon.textContent = "👁️"; // Иконка закрытого глаза
+                }
+            }
+        </script>
+</body>
+</html>

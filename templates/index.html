@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <!-- Подключение файла стилей -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="{{ url_for('index') }}" class="logo"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo"></a> <!-- Иконка изображения для перехода на главную страницу -->
+            <h2>Site Header</h2> <!-- Заголовок сайта -->
+            <nav>
+                <a href="{{ url_for('login') }}">Login</a> <!-- Ссылка на страницу входа -->
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Welcome to the Homepage</h2> <!-- Приветственное сообщение -->
+            <p>You can add images below:</p> <!-- Подпись для галереи изображений -->
+            <div class="image-gallery">
+                <!-- Пример вставки изображения -->
+                <img src="https://via.placeholder.com/300" alt="Sample Image">
+                <!-- Можно добавить больше изображений по аналогии -->
+            </div>
+        </div>
+    </main>
+</body>
+</html>

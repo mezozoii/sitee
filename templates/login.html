@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <!-- Подключение файла стилей -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="{{ url_for('index') }}" class="logo"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo"></a> <!-- Иконка изображения для перехода на главную страницу -->
+            <h1>Site Header</h1> <!-- Заголовок сайта -->
+            <nav>
+                <a href="{{ url_for('login') }}">Login</a> <!-- Ссылка на страницу входа -->
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Login</h2> <!-- Заголовок страницы входа -->
+            <form method="POST">
+                <div class="input-container">
+                    <input type="text" name="username" placeholder="Username" required> <!-- Поле для ввода имени пользователя -->
+                </div>
+                <div class="input-container">
+                    <input type="password" name="password" placeholder="Password" id="password" required> <!-- Поле для ввода пароля -->
+                    <span class="toggle-password" onclick="togglePassword()">👁️</span> <!-- Иконка для показа/скрытия пароля -->
+                </div>
+                <!-- Отображение сообщения об ошибке -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            {% if category == 'error' %}
+                                <p class="error-message">{{ message }}</p> <!-- Сообщение об ошибке -->
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <button class="login-bott" type="submit">
+                    Login
+                </button> <!-- Кнопка входа -->
+            </form>
+            <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p> <!-- Ссылка на регистрацию -->
+        </div>
+    </main>
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            var passwordFieldType = passwordField.getAttribute("type");
+            var toggleIcon = document.querySelector('.toggle-password');
+            if (passwordFieldType === "password") {
+                passwordField.setAttribute("type", "text");
+                toggleIcon.textContent = "🙈";
+            } else {
+                passwordField.setAttribute("type", "password");
+                toggleIcon.textContent = "👁️";
+            }
+        }
+    </script>
+</body>
+</html>
